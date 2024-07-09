@@ -1,18 +1,17 @@
 import React from 'react';
-import { Link } from 'react-scroll';
 
-const Navbar = () => {
+const Navbar = ({ scrollToHome, scrollToAbout, scrollToProjects, scrollToSkills, scrollToContact }) => {
   return (
     <nav className="navbar">
       <ul>
-        <li><Link to="home" smooth={true} duration={500}>Home</Link></li>
-        <li><Link to="about" smooth={true} duration={500}>About</Link></li>
-        <li><Link to="projects" smooth={true} duration={500}>Projects</Link></li>
-        <li><Link to="skills" smooth={true} duration={500}>Skills</Link></li>
-        <li><Link to="contact" smooth={true} duration={500}>Contact</Link></li>
+        <li onClick={scrollToHome}>Home</li>
+        <li onClick={scrollToAbout}>About</li>
+        <li onClick={scrollToSkills}>Skills</li>
+        <li onClick={scrollToProjects}>Projects</li>
+        <li onClick={scrollToContact}>Contact</li>
       </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;

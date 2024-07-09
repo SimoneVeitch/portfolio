@@ -1,40 +1,53 @@
-import React from 'react';
-import Fullpage, { FullPageSections, FullpageSection, FullpageNavigation } from '@ap.cx/react-fullpage';
+import { useRef } from "react";
 import Home from './Home';
 import About from './About';
 import Projects from './Projects';
 import Skills from './Skills';
 import Contact from './Contact';
-import Navbar from './NavBar';
+import '../App.css';
 
-const App = () => {
+function App() {
+  const homeRef = useRef(null);
+  const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+  const skillsRef = useRef(null);
+  const contactRef = useRef(null);
 
-  const SectionStyle={
-    height: '100vh',
-    width: '100%',
-    display: 'flex',
-  }
-  
+  const scrollToSection = (ref) => {
+    window.scrollTo({
+      top: ref.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <Fullpage>
-      <FullPageSections>
-        <FullpageSection style={{height: '100vh'}}>
-          <Home />
-        </FullpageSection>
-        <FullpageSection style={{height: '100vh'}}>
-          <About />
-        </FullpageSection>
-        <FullpageSection style={{height: '100vh'}}>
-          <Skills />
-        </FullpageSection>
-        <FullpageSection style={{height: '100vh'}}>
-          <Projects />
-        </FullpageSection>
-        <FullpageSection style={{height: '100vh'}}>
-          <Contact />
-        </FullpageSection>
-      </FullPageSections>
-    </Fullpage>
-);
-  }
+    <div className="App">
+      <nav className="navbar">
+        <ul>
+          <li onClick={() => scrollToSection(homeRef)}>Home</li>
+          <li onClick={() => scrollToSection(aboutRef)}>About</li>
+          <li onClick={() => scrollToSection(projectsRef)}>Projects</li>
+          <li onClick={() => scrollToSection(skillsRef)}>Skills</li>
+          <li onClick={() => scrollToSection(contactRef)}>Contact</li>
+        </ul>
+      </nav>
+      <div ref={homeRef}>
+        <Home />
+      </div>
+      <div ref={aboutRef}>
+        <About />
+      </div>
+      <div ref={projectsRef}>
+        <Projects />
+      </div>
+      <div ref={skillsRef}>
+        <Skills />
+      </div>
+      <div ref={contactRef}>
+        <Contact />
+      </div>
+    </div>
+  );
+}
+
 export default App;

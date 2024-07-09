@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Projects = ({ id, currentSection }) => {
+const Projects = () => {
     return (
-        <section id={id} className={`section ${currentSection ? 'in-view' : ''}`}>
+        <section id="projects" className="section">
           <h1>Project Section</h1>
           <p>Projects</p>
         </section>
