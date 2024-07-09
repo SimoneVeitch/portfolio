@@ -70,6 +70,7 @@
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
+  position: relative;
 }
 
 .container {
@@ -78,3 +79,56 @@
   height: 100vh;
 }
 
+.scroll-down {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+}
+
+.scroll-down p {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  border: solid #333;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  transform: rotate(45deg);
+  animation: pulse 1.5s infinite;
+  margin-top: 10px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    transform: rotate(45deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+
+.contact-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+}
+
+.contact-button p {
+  font-size: 18px;
+  color: #333;
+}

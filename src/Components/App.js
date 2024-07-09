@@ -12,12 +12,34 @@ function App() {
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
   const contactRef = useRef(null);
+  const containerRef = useRef(null);
 
-  const scrollToSection = (ref) => {
+  /* const scrollToSection = (ref) => {
     window.scrollTo({
       top: ref.current.offsetTop,
       behavior: "smooth",
     });
+  }; */
+
+  const scrollToSection = (ref) => {
+    if (ref.current && containerRef.current) {
+      const containerTop = containerRef.current.offsetTop;
+      const sectionTop = ref.current.offsetTop - containerTop;
+
+      containerRef.current.scrollTo({
+        top: sectionTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollToTop = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -31,7 +53,7 @@ function App() {
           <li onClick={() => scrollToSection(contactRef)}>Contact</li>
         </ul>
       </nav>
-      <div className="container">
+      <div className="container" ref={containerRef}>
       <div ref={homeRef}>
         <Home />
       </div>
@@ -45,10 +67,10 @@ function App() {
         <Skills />
       </div>
       <div ref={contactRef}>
-        <Contact />
+        <Contact scrollToTop={scrollToTop}/>
       </div>
       </div>
-    </div>
+      </div>
   );
 }
 
