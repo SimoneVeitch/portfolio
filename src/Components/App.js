@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Home from './Home';
 import About from './About';
 import Projects from './Projects';
@@ -31,6 +31,7 @@ function App() {
           <li onClick={() => scrollToSection(contactRef)}>Contact</li>
         </ul>
       </nav>
+      <div className="container">
       <div ref={homeRef}>
         <Home />
       </div>
@@ -45,6 +46,7 @@ function App() {
       </div>
       <div ref={contactRef}>
         <Contact />
+      </div>
       </div>
     </div>
   );

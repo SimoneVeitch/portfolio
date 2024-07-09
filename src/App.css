@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -33,48 +39,42 @@
   background-color: #555;
 }
 
-
 /* Home Component */
 #home {
   background-color: #f0f0f0;
-  height: 100vh; /* Take up full viewport height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* About Component */
 #about {
   background-color: #e6f7ff;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Projects Component */
 #projects {
   background-color: #ffd699;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Skills Component */
 #skills {
   background-color: #ccffcc;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Contact Component */
 #contact {
   background-color: #ffcccc;
+}
+
+.section {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  scroll-snap-align: start;
 }
+
+.container {
+  scroll-snap-type: y mandatory;
+  overflow-x: scroll;
+  height: 100vh;
+}
+
