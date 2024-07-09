@@ -14,13 +14,6 @@ function App() {
   const contactRef = useRef(null);
   const containerRef = useRef(null);
 
-  /* const scrollToSection = (ref) => {
-    window.scrollTo({
-      top: ref.current.offsetTop,
-      behavior: "smooth",
-    });
-  }; */
-
   const scrollToSection = (ref) => {
     if (ref.current && containerRef.current) {
       const containerTop = containerRef.current.offsetTop;
@@ -45,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <nav className="navbar">
-        <ul>
+        <ul className="nav-links">
           <li onClick={() => scrollToSection(homeRef)}>Home</li>
           <li onClick={() => scrollToSection(aboutRef)}>About</li>
           <li onClick={() => scrollToSection(projectsRef)}>Projects</li>

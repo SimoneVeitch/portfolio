@@ -4,7 +4,14 @@ const About = () => {
     return (
             <section id="about" className="section">
           <h1>About Section</h1>
-          <p>About me</p>
+         <div className="profile-card-wrap">
+         <div className="profile-card-text-wrap">
+            <h2>About Me</h2>
+            <p className="profile-text">
+                Some more things about me
+            </p>
+            </div>
+            </div>
           <div className="scroll-down">
         <p>Scroll</p>
         <div className="arrow"></div>
