@@ -38,8 +38,10 @@ function App() {
   return (
     <div className="App">
       <nav className="navbar">
+      <ul className="nav-name">
+    <li onClick={() => scrollToSection(homeRef)}>Simone Veitch</li>
+  </ul>
         <ul className="nav-links">
-          <li onClick={() => scrollToSection(homeRef)}>Home</li>
           <li onClick={() => scrollToSection(aboutRef)}>About</li>
           <li onClick={() => scrollToSection(projectsRef)}>Projects</li>
           <li onClick={() => scrollToSection(skillsRef)}>Skills</li>

@@ -3,37 +3,54 @@ import woman from '../Images/happy-woman-greeting-with-hi-gesture-waving-with-ha
 
 const Home = () => {
     const [showText, setShowText] = useState(false);
-    const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
-    const [currentWords, setCurrentWords] = useState([]);
-    const [currentWordIndex, setCurrentWordIndex] = useState(0);
-
-const sentences = [
+  const [sentences] = useState([
     "Hi! I'm Simone.",
     "A junior front end developer.",
-  ];
+  ]);
+  const [displayedSentences, setDisplayedSentences] = useState([]);
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   useEffect(() => {
+    let timer;
+
     if (showText) {
-      const sentence = sentences[currentSentenceIndex];
-      const words = sentence.split(' ');
+      const displayNextSentence = (index) => {
+        const sentence = sentences[index];
+        const words = sentence.split(' ');
 
-      const timer = setTimeout(() => {
-        if (currentWordIndex < words.length) {
-          setCurrentWords(prevWords => [...prevWords, words[currentWordIndex]]);
-          setCurrentWordIndex(prevIndex => prevIndex + 1);
-        } else {
-          setCurrentSentenceIndex(prevIndex => (prevIndex + 1) % sentences.length);
-          setCurrentWords([]);
-          setCurrentWordIndex(0);
-        }
-      }, 500); // Adjust the timeout delay as needed
+        timer = setInterval(() => {
+          if (currentWordIndex < words.length) {
+            setDisplayedSentences((prevSentences) => {
+              const updatedSentences = [...prevSentences];
+              updatedSentences[index] = words.slice(0, currentWordIndex + 1).join(' ');
+              return updatedSentences;
+            });
+            setCurrentWordIndex(currentWordIndex + 1); // Increment word index
+          } else {
+            clearInterval(timer);
+            if (index + 1 < sentences.length) {
+              setTimeout(() => {
+                setCurrentSentenceIndex(index + 1); // Move to next sentence
+                setCurrentWordIndex(0); // Reset word index for new sentence
+              }, 1000); // Delay between sentences
+            }
+          }
+        }, 300); // Delay between words
+      };
 
-      return () => clearTimeout(timer);
+      // Start displaying sentences
+      displayNextSentence(currentSentenceIndex);
     }
-  }, [showText, currentSentenceIndex, currentWordIndex]);
+
+    // Cleanup timer
+    return () => {
+      clearInterval(timer);
+    };
+  }, [showText, sentences, currentSentenceIndex, currentWordIndex]);
 
   const handleClick = () => {
-    setShowText(true); // Trigger text display on click
+    setShowText(true);
   };
 
   return (
@@ -57,7 +74,9 @@ const sentences = [
             />
           </div>
           <div className="text-right">
-          <p>{currentWords.join(' ')}</p>
+            {displayedSentences.map((sentence, index) => (
+              <p key={index}>{sentence}</p>
+            ))}
           </div>
         </div>
       )}
