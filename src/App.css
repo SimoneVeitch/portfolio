@@ -8,6 +8,7 @@
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+  color: #333;
 }
 
 
@@ -36,6 +37,7 @@
   margin: 0;
   font-size: 18px;
   color: #333;
+  font-size: 15px;
 }
 
 .arrow {
@@ -141,16 +143,86 @@
   width: 600px;
 }
 
-.animated-text {
-  overflow: hidden;
-  white-space: nowrap;
-  margin: 0 auto; 
-  letter-spacing: 0.15em; 
+.text-right p {
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 70px;
+  line-height: 1.4;
+  color: #5856e4;
 }
 
 /* About */
 #about {
-  background-color: #e6f7ff;
+  background-color: #fffdf6;
+  padding: 20px; 
+  box-sizing: border-box; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  position: relative;
+}
+
+#about h1 {
+  font-size: 90px;
+  color: #5856e4;
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  margin-top: 150px;
+  margin-left: 50px;
+}
+
+#about p {
+  color: #333;
+  line-height: 1.5;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#about .scroll-down {
+  position: absolute;
+  bottom: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.profile-card-wrap {
+    background-color: #5856e4;
+    flex-direction: column;
+    width: 50em;
+    display: flex;
+    position: absolute;
+    top: auto;
+    bottom: 7.5%;
+    left: auto;
+    right: 0%;
+}
+
+#about h2 {
+  margin-left: 50px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#about .profile-text {
+  margin-bottom: 30px;
+}
+
+.face-reveal-gif {
+  /* Adjust width and margin as needed */
+  width: 800px;
+  display: flex;
+  justify-self: left;
+    position: absolute;
+    top: auto;
+    bottom: 7.5%;
 }
 
 /* Projects */
@@ -165,7 +237,28 @@
 
 /* Contact*/
 #contact {
-  background-color: #ffcccc;
+  background-color: #5856e4;
+  height: 50vh;
+  padding: 20px; 
+  box-sizing: border-box; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: flex-start; 
+}
+
+#contact h1 {
+  font-size: 120px;
+  color: whitesmoke;
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  margin: 0;
+}
+
+#contact p {
+  color: whitesmoke;
 }
 
 .contact-button {
@@ -186,54 +279,47 @@
   color: #333;
 }
 
-.skills-container {
+.social-links {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh; /* Adjust height as needed */
-}
-
-.skill {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  cursor: grab;
+  justify-content: center; 
 }
 
 .circle {
-  width: 100px;
-  height: 100px;
+  width: 70px; 
+  height: 70px; 
+  border: 2px solid white;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.3s, background-color 0.3s;
+  margin-top: 30px;
+  margin-right: 20px;
+  text-decoration: none; 
 }
 
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 100px solid;
+.circle:hover {
+  background-color: orange;
 }
 
-.square {
-  width: 100px;
-  height: 100px;
+.email-circle {
+  width: 70px; 
+  height: 70px; 
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.3s, background-color 0.3s;
+  margin-top: 30px;
+  margin-right: 20px;
+  text-decoration: none; 
 }
 
-.profile-card-wrap {
-  grid-column-gap: 5em;
-    grid-row-gap: 5em;
-    background-color: green;
-    flex-direction: column;
-    width: 40em;
-    padding: 8em 3em 5em;
-    display: flex;
-    position: absolute;
-    top: auto;
-    bottom: 0%;
-    left: auto;
-    right: 0%;
+.email-circle:hover {
+  background-color: orange;
+}
+
+.svg-path {
+  transition: fill 0.3s;
 }

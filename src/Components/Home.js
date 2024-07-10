@@ -33,10 +33,10 @@ const Home = () => {
               setTimeout(() => {
                 setCurrentSentenceIndex(index + 1); // Move to next sentence
                 setCurrentWordIndex(0); // Reset word index for new sentence
-              }, 1000); // Delay between sentences
+              }, 300); // Delay between sentences
             }
           }
-        }, 300); // Delay between words
+        }, 200); // Delay between words
       };
 
       // Start displaying sentences
