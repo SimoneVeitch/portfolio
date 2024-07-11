@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import gif from '../Images/face-reveal.gif';
 
 const About = () => {
+    const h1Ref = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    h1Ref.current.classList.add('visible');
+                } else {
+                    h1Ref.current.classList.remove('visible');
+                }
+            });
+        }, {
+            threshold: 0.5 // Adjust as needed
+        });
+
+        observer.observe(h1Ref.current);
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
             <section id="about" className="section">
                 <div className="about-copy">
-          <h1>Coding with heart<br />and enthusiasm</h1>
+          <h1 ref={h1Ref} className="title-animated-text">Coding with heart<br />and enthusiasm</h1>
           <p>
           Let's team up, collaborate, and turn ideas into reality! <br />Be part of my journey as we create and innovate together.
           </p>

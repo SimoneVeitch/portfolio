@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Contact = ({ scrollToTop }) => {
+    const h1Ref = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    h1Ref.current.classList.add('visible');
+                } else {
+                    h1Ref.current.classList.remove('visible');
+                }
+            });
+        }, {
+            threshold: 0.5 // Adjust as needed
+        });
+
+        observer.observe(h1Ref.current);
+
+        return () => observer.disconnect();
+    }, []);
+
+
     return (
         <section id="contact" className="section">
-          <h1>Let's Get in Touch</h1>
+          <h1 ref={h1Ref} className="title-animated-text">Let's Get in Touch</h1>
           <p>Some text</p>
           <div className="social-links">
           {/* LinkedIn Link */}
