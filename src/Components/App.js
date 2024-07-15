@@ -1,10 +1,10 @@
-import React, { useRef, useEffect } from "react";
-import Home from './Home';
-import About from './About';
-import Projects from './Projects';
-import Skills from './Skills';
-import Contact from './Contact';
-import '../App.css';
+import React, { useRef, useState } from "react";
+import Home from "./Home";
+import About from "./About";
+import Projects from "./Projects";
+import Skills from "./Skills";
+import Contact from "./Contact";
+import "../App.css";
 
 function App() {
   const homeRef = useRef(null);
@@ -13,6 +13,11 @@ function App() {
   const skillsRef = useRef(null);
   const contactRef = useRef(null);
   const containerRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   const scrollToSection = (ref) => {
     if (ref.current && containerRef.current) {
@@ -23,6 +28,9 @@ function App() {
         top: sectionTop,
         behavior: "smooth",
       });
+
+      // Close menu on mobile after clicking a link
+      setMenuOpen(false);
     }
   };
 
@@ -32,16 +40,24 @@ function App() {
         top: 0,
         behavior: "smooth",
       });
+
+      // Close menu on mobile after clicking a link
+      setMenuOpen(false);
     }
   };
 
   return (
     <div className="App">
       <nav className="navbar">
-      <ul className="nav-name">
-    <li onClick={() => scrollToSection(homeRef)}>Simone Veitch</li>
-  </ul>
-        <ul className="nav-links">
+        <ul className="nav-name">
+          <li onClick={() => scrollToSection(homeRef)}>Simone Veitch</li>
+        </ul>
+        <button className={`hamburger ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+        </button>
+        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           <li onClick={() => scrollToSection(aboutRef)}>About</li>
           <li onClick={() => scrollToSection(projectsRef)}>Projects</li>
           <li onClick={() => scrollToSection(skillsRef)}>Skills</li>
@@ -49,23 +65,23 @@ function App() {
         </ul>
       </nav>
       <div className="container" ref={containerRef}>
-      <div ref={homeRef}>
-        <Home />
+        <div ref={homeRef}>
+          <Home />
+        </div>
+        <div ref={aboutRef}>
+          <About />
+        </div>
+        <div ref={projectsRef}>
+          <Projects />
+        </div>
+        <div ref={skillsRef}>
+          <Skills />
+        </div>
+        <div ref={contactRef}>
+          <Contact scrollToTop={scrollToTop} />
+        </div>
       </div>
-      <div ref={aboutRef}>
-        <About />
-      </div>
-      <div ref={projectsRef}>
-        <Projects />
-      </div>
-      <div ref={skillsRef}>
-        <Skills />
-      </div>
-      <div ref={contactRef}>
-        <Contact scrollToTop={scrollToTop}/>
-      </div>
-      </div>
-      </div>
+    </div>
   );
 }
 

@@ -107,6 +107,76 @@
   color: #5856e4;
 }
 
+
+.hamburger {
+  display: none; /* Hide by default on larger screens */
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: flex-end; /* Aligns hamburger menu to the right */
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20px;
+    height: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1010; /* Ensure hamburger is above other content */
+  }
+
+  .hamburger .line {
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .hamburger.open .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.open .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-links {
+    display: none;
+    width: 50%;
+    background: #fffdf6; 
+    position: absolute;
+    top: 50px;
+    flex-direction: column;
+    z-index: 1000;
+  }
+
+  .nav-links.open {
+    display: flex;
+    background-color: #5856e4;
+  }
+
+  .nav-name {
+    font-size: 10px;
+    text-align: left;
+  }
+
+  .nav-links li {
+    text-align: right;
+    margin-right: 30px;
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
 /* Home */
 #home {
   background-color: #fffdf6;
@@ -152,6 +222,53 @@
   color: #5856e4;
 }
 
+.home-circle {
+  position: absolute;
+  top: 20%; /* Align at the top */
+  left: 10%; /* Align at the left */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #5856e4;
+  display: flex;
+}
+
+/* Media query for smaller screens (up to 768px) */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column-reverse; 
+    margin-top: 50px;
+  }
+
+  .text-right p {
+    font-size: 20px; /* Adjust font size for mobile */
+    text-align: center;
+  }
+
+  .image-left,
+  .left-image {
+    width: 350px;
+    margin-top: -20px;
+  }
+
+  .center-image {
+    width: 350px;
+  }
+
+  .home-circle {
+    display: block; 
+    position: relative; 
+    margin: 0 auto; /* Center horizontally */
+    bottom: auto; /* Reset bottom position */
+    transform: none; /* Reset transform */
+    margin-top: -30px;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+  }
+
+}
+
 /* About */
 #about {
   background-color: #fffdf6;
@@ -166,7 +283,7 @@
 
 #about h1 {
   font-size: 100px;
-  color: #5856e4;
+  color: #f54b0c;
   font-family: "Heebo", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;
@@ -206,15 +323,11 @@
 }
 
 .profile-card-wrap {
-    background-color: #5856e4;
+    background-color: #eb8366;
     flex-direction: column;
     width: 50em;
-    display: flex;
-    position: absolute;
-    top: auto;
-    bottom: 7.5%;
-    left: auto;
-    right: 0%;
+    position: relative;
+    margin-left: auto; 
 }
 
 #about h2 {
@@ -225,6 +338,7 @@
 
 #about .profile-text {
   margin-bottom: 30px;
+  color: #333;
 }
 
 .face-reveal-gif {
@@ -234,6 +348,111 @@
     position: absolute;
     top: auto;
     bottom: 7.5%;
+}
+
+@media (max-width: 768px) {
+  /* About */
+#about {
+  background-color: #fffdf6;
+  box-sizing: border-box; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  position: relative;
+}
+
+#about h1 {
+  font-size: 40px; /* Reduced font size for mobile */
+  color: #f54b0c;
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  margin-top: 70px; /* Adjusted margin for top positioning */
+  margin-left: 20px; /* Adjusted margin for left positioning */
+  line-height: 1.1;
+  margin-bottom: 20px; /* Adjusted margin for bottom spacing */
+}
+
+#about p {
+  color: #333;
+  line-height: 1.5;
+  margin-left: 20px; /* Adjusted margin for left positioning */
+  margin-right: 20px; /* Adjusted margin for right positioning */
+}
+
+.face-reveal-gif {
+  width: 100%; /* Full width for mobile screens */
+  margin-top: 20px; /* Adjusted margin for spacing */
+  bottom: 7.5%;
+}
+}
+/* Modal */
+.profile-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fffdf6;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.profile-modal.open {
+  transform: translateY(0);
+}
+
+.profile-modal-content {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 60px); /* Adjust as needed */
+}
+
+.toggle-profile-btn {
+  background-color: #f54b0c;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.toggle-profile-btn:focus {
+  outline: none;
+}
+
+.profile-modal h2 {
+  margin-top: 0;
+  color: #f54b0c;
+}
+
+.profile-modal .profile-text {
+  color: #333;
+  line-height: 1.5;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #f54b0c;
+}
+
+@media (min-width: 769px) {
+  /* Adjust styles for larger screens if necessary */
+  .profile-modal {
+    display: none; /* Hide modal on larger screens */
+  }
 }
 
 /* Projects */
@@ -388,7 +607,7 @@
 
 #skills h1 {
   font-size: 100px;
-  color: #5856e4;
+  color: #f54b0c;
   font-family: "Heebo", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;

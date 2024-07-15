@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import woman from '../Images/happy-woman-greeting-with-hi-gesture-waving-with-hand-smiling-portrait-friendly-female-saying-hello-welcoming-smb-flat-vector-illustration-isolated-white-background.png';
 
 const Home = () => {
@@ -10,6 +10,20 @@ const Home = () => {
   const [displayedSentences, setDisplayedSentences] = useState([]);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const circleTextRef = useRef(null);
+  const [showCircle, setShowCircle] = useState(false);
+
+useEffect(() => {
+    const text = circleTextRef.current;
+    if (text) {
+      text.innerHTML = text.innerText
+        .split("")
+        .map((char, i) => `<span style="transform:rotate(${i * 5.5}deg)">${char}</span>`)
+        .join("");
+    }
+  }, []);
+
+    // Effect to manage text animation
 
   useEffect(() => {
     let timer;
@@ -49,13 +63,18 @@ const Home = () => {
     };
   }, [showText, sentences, currentSentenceIndex, currentWordIndex]);
 
+  // Handler for handling click event on image
   const handleClick = () => {
-    setShowText(true);
+    setTimeout(() => {
+      setShowCircle(true);
+    }, 3000); // Delay for 5 seconds to show the circle
+    setShowText(true); // Immediately show the text
   };
 
   return (
        <section id="home" className="section">
       {!showText ? (
+        // Display initial image and handle click event
         <div className="image-container">
           <img
             src={woman}
@@ -65,6 +84,7 @@ const Home = () => {
           />
         </div>
       ) : (
+        // Display content after text is shown
         <div className="content-container">
           <div className="image-left">
             <img
@@ -78,8 +98,13 @@ const Home = () => {
               <p key={index}>{sentence}</p>
             ))}
           </div>
+          {showCircle && (
+          <div className="home-circle">
         </div>
+        )}
+      </div>
       )}
+      <div className="mobile-cta"></div>
       <div className="scroll-down">
         <p>Scroll</p>
         <div className="arrow"></div>
