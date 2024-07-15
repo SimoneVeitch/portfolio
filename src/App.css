@@ -11,7 +11,6 @@
   color: #333;
 }
 
-
 .section {
   height: 100vh;
   display: flex;
@@ -276,77 +275,86 @@
 #projects p {
   color: #333;
   line-height: 1.5;
-  margin-left: 50px;
-  margin-right: 50px;
 }
 
 .projects-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
   margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .project-card {
-  width: 400px; /* Adjust as needed */
+  width: 400px; 
   border: none;
-  overflow: hidden; /* Ensure content doesn't overflow */
-  position: relative; /* Ensure proper stacking */
-  margin-bottom: 50px;
-}
-
-.card-content {
-  padding: 20px;
+  overflow: hidden; 
+  position: relative; 
+  margin-right: 30px;
 }
 
 .icons {
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: left;
+  margin-bottom: 30px;
 }
 
-.icon {
-  margin-right: 10px;
-  background-color: #5856e4;
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
+.project-icon {
+  width: 20px; 
+  height: 20px; 
+  margin: 0 5px; 
 }
 
 .project-image {
-  width: 100%;
+  width: 100%; 
   display: block;
+  margin-bottom: 15px;
   transition: transform 0.3s ease-in-out;
 }
 
+.project-image-container {
+  overflow: hidden; /* Ensure image doesn't overflow its container */
+}
+
+.project-image:hover {
+  transform: scale(1.2); /* Zoom effect on hover */
+}
+
+.project-info p {
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
 .project-arrow {
-  background-color: transparent;
-  color: rgb(34, 28, 28);
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
+  width: 10px;
+  height: 10px;
+  border: solid #333;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  transform: rotate(45deg);
+  margin-left: 30px;
+  margin-bottom: 20px;
+  margin-top: 15px;
 }
 
 .buttons {
   display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #fffdf6; /* Background color for buttons */
+  justify-content: left;
 }
 
 .button {
   padding: 10px 20px;
   background-color: #5856e4;
-  color: white;
+  color: whitesmoke;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: background-color 0.3s ease-in-out;
+  margin-right: 20px;
 }
 
 .button:hover {
-  background-color: #4342b8; /* Darker shade on hover */
+  background-color: #ec670f; 
 }
 
 #projects .scroll-down {
@@ -357,6 +365,10 @@
   display: flex;
   flex-direction: column; 
   align-items: center; 
+}
+
+#projects h2 {
+  margin-bottom: 15px;
 }
 
 /* Skills*/
@@ -412,7 +424,7 @@
   gap: 20px;
   flex-wrap: wrap;
   margin-left: 0;
-  width: 60%;
+  width: 70%;
 }
 
 .skills-card {
@@ -422,6 +434,14 @@
   position: relative; /* Ensure proper stacking */
   margin-bottom: 20px;
   text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.skills-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .skills-card h2 {

@@ -1,9 +1,15 @@
-import React, { useEffect, useRef } from 'react';
-
-import projectImage1 from '../Images/project1.jpg';
+import React, { useEffect, useRef, useState} from 'react';
+import furryGif from '../Images/Screen Shot 2024-07-15 at 10.21.32.png';
+import javascript from '../Images/javascript-svgrepo-com.svg';
+import reactImg from '../Images/react-svgrepo-com.svg';
+import html from '../Images/html-5-svgrepo-com.svg';
+import  cssImg from '../Images/css3-svgrepo-com.svg';
+import apiIntImg from '../Images/api-svgrepo-com.svg';
+import reactRouterImg from '../Images/react-router-svgrepo-com.svg';
 
 const Projects = () => {
     const h1Ref = useRef(null);
+    const [showProjectInfo, setShowProjectInfo] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
@@ -23,23 +29,34 @@ const Projects = () => {
         return () => observer.disconnect();
     }, []);
 
+    const toggleProjectInfo = () => {
+        setShowProjectInfo(!showProjectInfo);
+    };
+
     return (
         <section id="projects" className="section">
             <h1 ref={h1Ref} className="title-animated-text">Projects</h1>
+
             <div className="projects-container">
-                <div className="project-card">
+
+            <div className="project-card">
                     <div className="card-content">
-                        <h2>Project 1</h2>
+                        <h2>Furry Fave</h2>
                         <div className="icons">
-                            <span className="icon">JS</span>
-                            <span className="icon">React</span>
-                            <span className="icon">HTML</span>
-                            <span className="icon">CSS</span>
+                            <img src={javascript} alt="JavaScript" className="project-icon" />
+                            <img src={reactImg} alt="React" className="project-icon" />
+                            <img src={html} alt="HTML" className="project-icon" />
+                            <img src={cssImg} alt="CSS" className="project-icon" />
                         </div>
-                        <img src={projectImage1} alt="Project 1" className="project-image" />
-                        <div className="overlay">
-                            <button className="project-arrow">More Info</button>
+                        <div className="pm-image-container">
+                        <img src={furryGif} alt="Project 1" className="project-image" />
                         </div>
+                        {showProjectInfo && (
+                            <div className="project-info">
+                                <p>Additional information about the project...</p>
+                            </div>
+                        )}
+                        <div className="project-arrow" onClick={toggleProjectInfo}></div>
                         <div className="buttons">
                             <a href="#" className="button">Source</a>
                             <a href="#" className="button">Live</a>
@@ -49,17 +66,17 @@ const Projects = () => {
 
                 <div className="project-card">
                     <div className="card-content">
-                        <h2>Project 2</h2>
+                        <h2>Furry Fave</h2>
                         <div className="icons">
-                            <span className="icon">JS</span>
-                            <span className="icon">React</span>
-                            <span className="icon">HTML</span>
-                            <span className="icon">CSS</span>
+                        <img src={javascript} alt="JavaScript" className="project-icon" />
+                            <img src={reactImg} alt="React" className="project-icon" />
+                            <img src={html} alt="HTML" className="project-icon" />
+                            <img src={cssImg} alt="CSS" className="project-icon" />
                         </div>
-                        <img src={projectImage1} alt="Project 2" className="project-image" />
-                        <div className="overlay">
-                            <button className="project-arrow">More Info</button>
-                        </div>
+                        <img src={furryGif} alt="Project 1" className="project-image" />
+                        <div className="project-info">
+            <div className="project-arrow"></div>
+      </div>
                         <div className="buttons">
                             <a href="#" className="button">Source</a>
                             <a href="#" className="button">Live</a>
@@ -69,23 +86,26 @@ const Projects = () => {
 
                 <div className="project-card">
                     <div className="card-content">
-                        <h2>Project 3</h2>
+                        <h2>Furry Fave</h2>
                         <div className="icons">
-                            <span className="icon">JS</span>
-                            <span className="icon">React</span>
-                            <span className="icon">HTML</span>
-                            <span className="icon">CSS</span>
+                        <img src={javascript} alt="JavaScript" className="project-icon" />
+                            <img src={reactImg} alt="React" className="project-icon" />
+                            <img src={html} alt="HTML" className="project-icon" />
+                            <img src={cssImg} alt="CSS" className="project-icon" />
                         </div>
-                        <img src={projectImage1} alt="Project 3" className="project-image" />
-                        <div className="overlay">
-                            <button className="project-arrow">More Info</button>
-                        </div>
+                        <img src={furryGif} alt="Project 1" className="project-image" />
+                        <div className="project-info">
+            <div className="project-arrow"></div>
+      </div>
                         <div className="buttons">
                             <a href="#" className="button">Source</a>
                             <a href="#" className="button">Live</a>
                         </div>
                     </div>
                 </div>
+
+                
+             
             </div>
             <div className="scroll-down">
         <p>Scroll</p>

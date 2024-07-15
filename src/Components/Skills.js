@@ -17,24 +17,66 @@ import npmImg from '../Images/npm-icon-svgrepo-com.svg';
 const Skills = () => {
 
     const h1Ref = useRef(null);
-    
+    const skillsContainerRef = useRef(null);
+    const scrollDownRef = useRef(null);
+
     useEffect(() => {
-        const observer = new IntersectionObserver(entries => {
+        const h1Observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    h1Ref.current.classList.add('visible');
+                    entry.target.classList.add('visible');
                 } else {
-                    h1Ref.current.classList.remove('visible');
+                    entry.target.classList.remove('visible');
                 }
             });
         }, {
             threshold: 0.5 // Adjust as needed
         });
 
-        observer.observe(h1Ref.current);
+        h1Observer.observe(h1Ref.current);
 
-        return () => observer.disconnect();
+        const skillsObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.skills-card').forEach(card => {
+                        card.classList.add('visible');
+                    });
+                } else {
+                    entry.target.querySelectorAll('.skills-card').forEach(card => {
+                        card.classList.remove('visible');
+                    });
+                }
+            });
+        }, {
+            threshold: 0.5 // Adjust as needed
+        });
+
+        skillsObserver.observe(skillsContainerRef.current);
+
+        const scrollDownObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio === 1) {
+                    scrollDownRef.current.style.display = 'flex'; // Show scroll-down div
+                } else {
+                    scrollDownRef.current.style.display = 'none'; // Hide scroll-down div
+                }
+            });
+        }, {
+            threshold: 1 // Trigger when the component is fully in view
+        });
+
+        if (skillsContainerRef.current) {
+            scrollDownObserver.observe(skillsContainerRef.current);
+        }
+
+        return () => {
+            h1Observer.disconnect();
+            skillsObserver.disconnect();
+            scrollDownObserver.disconnect();
+        };
     }, []);
+
+    
     
 
   return (
@@ -43,7 +85,7 @@ const Skills = () => {
       <p>
           Let's team up, collaborate, and turn ideas into reality! <br />Be part of my journey as we create and innovate together.
           </p>
-      <div className="skills-container">
+          <div ref={skillsContainerRef} className="skills-container">
 
                 <div className="skills-card">
                     <div className="skills-content">
@@ -148,7 +190,7 @@ const Skills = () => {
 
                     
 
-      <div className="scroll-down">
+      <div ref={scrollDownRef} className="scroll-down">
         <p>Scroll</p>
         <div className="arrow"></div>
       </div>
