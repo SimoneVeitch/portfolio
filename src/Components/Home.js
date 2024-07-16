@@ -13,15 +13,6 @@ const Home = () => {
   const circleTextRef = useRef(null);
   const [showCircle, setShowCircle] = useState(false);
 
-useEffect(() => {
-    const text = circleTextRef.current;
-    if (text) {
-      text.innerHTML = text.innerText
-        .split("")
-        .map((char, i) => `<span style="transform:rotate(${i * 5.5}deg)">${char}</span>`)
-        .join("");
-    }
-  }, []);
 
     // Effect to manage text animation
 
@@ -67,7 +58,7 @@ useEffect(() => {
   const handleClick = () => {
     setTimeout(() => {
       setShowCircle(true);
-    }, 3000); // Delay for 5 seconds to show the circle
+    }, 4000); // Delay for 5 seconds to show the circle
     setShowText(true); // Immediately show the text
   };
 

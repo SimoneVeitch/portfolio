@@ -10,6 +10,7 @@ import reactRouterImg from '../Images/react-router-svgrepo-com.svg';
 const Projects = () => {
     const h1Ref = useRef(null);
     const [showProjectInfo, setShowProjectInfo] = useState(false);
+    
 
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {

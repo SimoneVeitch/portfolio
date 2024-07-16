@@ -14,6 +14,7 @@ function App() {
   const contactRef = useRef(null);
   const containerRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);

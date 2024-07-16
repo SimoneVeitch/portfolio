@@ -91,8 +91,9 @@
   font-style: normal;
   font-size: 1.5em;
   cursor: pointer;
-  transition: color 0.3s ease-in-out;
-  margin: 20px; 
+  position: relative; /* Ensure the ::before pseudo-element is relative to the li */
+  margin: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-name li {
@@ -103,10 +104,27 @@
   margin-right: 50px;
 }
 
-.nav-links li:hover, .nav-name li:hover {
-  color: #5856e4;
+.nav-links li::before,
+.nav-name li::before {
+  content: "";
+  position: absolute;
+  bottom: -2px; /* Adjust to position the underline appropriately */
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #5856e4;
+  transition: width 0.3s ease-in-out; /* Animate the width change */
 }
 
+.nav-links li:hover::before,
+.nav-name li:hover::before {
+  width: 100%; /* Expand the underline on hover */
+}
+
+.nav-links li.active::before,
+.nav-name li.active::before {
+  width: 100%;
+}
 
 .hamburger {
   display: none; /* Hide by default on larger screens */
@@ -114,25 +132,26 @@
 
 @media (max-width: 768px) {
   .navbar {
-    justify-content: flex-end; /* Aligns hamburger menu to the right */
+    justify-content: space-between;
   }
 
   .hamburger {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    width: 20px;
-    height: 15px;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
     z-index: 1010; /* Ensure hamburger is above other content */
+    margin-right: 30px;
   }
 
   .hamburger .line {
     width: 100%;
-    height: 2px;
+    height: 3px;
     background-color: #333;
     transition: transform 0.3s, opacity 0.3s;
   }
@@ -154,7 +173,8 @@
     width: 50%;
     background: #fffdf6; 
     position: absolute;
-    top: 50px;
+    top: 60px;
+    right: 0;
     flex-direction: column;
     z-index: 1000;
   }
@@ -167,6 +187,7 @@
   .nav-name {
     font-size: 10px;
     text-align: left;
+    margin-left: -20px;
   }
 
   .nav-links li {
@@ -174,6 +195,66 @@
     margin-right: 30px;
     width: 100%;
     font-size: 15px;
+  }
+}
+
+@media (max-width: 1280px) and (min-width: 768px) {
+  .navbar {
+    justify-content: space-between;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 35px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1010; /* Ensure hamburger is above other content */
+    margin-right: 50px;
+  }
+
+  .hamburger .line {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .hamburger.open .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.open .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-links {
+    display: none;
+    width: 50%;
+    background: #fffdf6; 
+    position: absolute;
+    top: 60px;
+    right: 0;
+    flex-direction: column;
+    z-index: 1000;
+  }
+
+  .nav-links.open {
+    display: flex;
+    background-color: #5856e4;
+  }
+
+  .nav-name {
+    font-size: 12px;
+    text-align: left;
   }
 }
 
@@ -217,7 +298,7 @@
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
-  font-size: 70px;
+  font-size: 60px;
   line-height: 1.4;
   color: #5856e4;
 }
@@ -225,7 +306,7 @@
 .home-circle {
   position: absolute;
   top: 20%; /* Align at the top */
-  left: 10%; /* Align at the left */
+  left: 5%; /* Align at the left */
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -234,38 +315,60 @@
 }
 
 /* Media query for smaller screens (up to 768px) */
-@media (max-width: 768px) {
+@media (max-width: 1280px) {
   .content-container {
     flex-direction: column-reverse; 
-    margin-top: 50px;
+    margin-top: 200px;
   }
 
   .text-right p {
-    font-size: 20px; /* Adjust font size for mobile */
+    font-size: 25px; /* Adjust font size for mobile */
     text-align: center;
+  }
+
+  .text-right {
+    margin-top: 25px;
+    margin-bottom: -15px;
   }
 
   .image-left,
   .left-image {
-    width: 350px;
+    width: 500px;
     margin-top: -20px;
+    margin-bottom: -30px;
   }
 
   .center-image {
-    width: 350px;
+    width: 500px;
+    margin-bottom: -30px;
   }
 
   .home-circle {
-    display: block; 
-    position: relative; 
-    margin: 0 auto; /* Center horizontally */
-    bottom: auto; /* Reset bottom position */
-    transform: none; /* Reset transform */
-    margin-top: -30px;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
+    top: 15%; 
+    left: 50%; /* Moves the circle to the center horizontally */
+    transform: translateX(-50%);
   }
+
+}
+
+@media (min-width: 1280px) and (max-width: 1440px) {
+  .text-right p {
+    font-size: 60px; 
+  }
+
+  .text-right {
+  padding-left: 0;
+  margin-right: 20px;
+}
+
+  .home-circle {
+    top: 18%; 
+  }
+
+  .left-image {
+    margin-left: 70px;
+  }
+
 
 }
 
@@ -350,6 +453,14 @@
     bottom: 7.5%;
 }
 
+.profile-modal {
+  display: none;
+}
+
+.toggle-profile-btn {
+  display: none
+}
+
 @media (max-width: 768px) {
   /* About */
 #about {
@@ -362,6 +473,10 @@
   position: relative;
 }
 
+.profile-card-wrap {
+  display: none;
+}
+
 #about h1 {
   font-size: 40px; /* Reduced font size for mobile */
   color: #f54b0c;
@@ -369,10 +484,10 @@
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
-  margin-top: 70px; /* Adjusted margin for top positioning */
+  margin-top: 120px; /* Adjusted margin for top positioning */
   margin-left: 20px; /* Adjusted margin for left positioning */
   line-height: 1.1;
-  margin-bottom: 20px; /* Adjusted margin for bottom spacing */
+  margin-bottom: 30px; /* Adjusted margin for bottom spacing */
 }
 
 #about p {
@@ -380,14 +495,18 @@
   line-height: 1.5;
   margin-left: 20px; /* Adjusted margin for left positioning */
   margin-right: 20px; /* Adjusted margin for right positioning */
+  margin-bottom: 20px;
 }
 
 .face-reveal-gif {
   width: 100%; /* Full width for mobile screens */
   margin-top: 20px; /* Adjusted margin for spacing */
-  bottom: 7.5%;
+  margin-bottom: 30px; /* Added margin for bottom spacing */
+    display: block; /* Ensure it's a block-level element */
+    margin-left: auto;
+    margin-right: auto;
 }
-}
+
 /* Modal */
 .profile-modal {
   position: fixed;
@@ -399,6 +518,7 @@
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
+  display: flex;
 }
 
 .profile-modal.open {
@@ -406,9 +526,10 @@
 }
 
 .profile-modal-content {
-  padding: 20px;
   overflow-y: auto;
-  max-height: calc(100vh - 60px); /* Adjust as needed */
+  max-height: calc(100vh - 60px); 
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .toggle-profile-btn {
@@ -421,6 +542,7 @@
   font-size: 15px;
   margin-top: 20px;
   margin-left: 20px;
+  display: flex;
 }
 
 .toggle-profile-btn:focus {
@@ -428,7 +550,6 @@
 }
 
 .profile-modal h2 {
-  margin-top: 0;
   color: #f54b0c;
 }
 
@@ -447,12 +568,6 @@
   font-size: 24px;
   color: #f54b0c;
 }
-
-@media (min-width: 769px) {
-  /* Adjust styles for larger screens if necessary */
-  .profile-modal {
-    display: none; /* Hide modal on larger screens */
-  }
 }
 
 /* Projects */
@@ -590,10 +705,59 @@
   margin-bottom: 15px;
 }
 
+@media (max-width: 768px) {
+
+#projects h1 {
+  font-size: 40px; /* Reduced font size for mobile */
+  margin-top: 120px; /* Adjusted margin for top positioning */
+  margin-left: 20px; /* Adjusted margin for left positioning */
+  line-height: 1.1;
+  margin-bottom: 30px; /* Adjusted margin for bottom spacing */
+}
+
+#projects p {
+  color: #333;
+  line-height: 1.5;
+  margin-left: 20px; /* Adjusted margin for left positioning */
+  margin-right: 20px; /* Adjusted margin for right positioning */
+  margin-bottom: 20px;
+}
+
+.projects-container {
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 20px; /* Add padding to accommodate scroll bar */
+  margin-left: -20px; /* Offset margin for better alignment */
+}
+
+.project-card {
+  width: 350px; /* Adjusted width for mobile */
+  margin-right: 20px;
+  flex: 0 0 auto; /* Prevent card from shrinking on smaller screens */
+}
+
+.project-card:first-child {
+  margin-left: 40px;
+}
+
+}
+
 /* Skills*/
 #skills .section {
   position: relative;
 }
+
+#skills .scroll-down {
+  position: absolute;
+  bottom: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+}
+
 #skills {
   background-color: #fffdf6;
   padding: 20px; 
@@ -625,17 +789,6 @@
   margin-right: 50px;
   margin-bottom: 30px;
 }
-
-#skills .scroll-down {
-  position: absolute;
-  bottom: 20px; 
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column; 
-  align-items: center; 
-}
-
 
 .skills-container {
   display: flex;
@@ -695,6 +848,71 @@
   width: auto;
   margin-bottom: 10px;
 }
+
+.more-skills-button {
+display: none;
+}
+
+@media (max-width: 768px) {
+
+  .skills-container {
+    width: 100%; /* Full width on mobile */
+    margin-left: 20px;
+    gap: 10px;
+}
+
+.skills-card {
+    width: calc(50% - 10px); /* Two cards per row on mobile */
+}
+
+.skills-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  #skills h1 {
+    font-size: 40px; /* Reduced font size for mobile */
+    margin-top: 120px; /* Adjusted margin for top positioning */
+    margin-left: 20px; /* Adjusted margin for left positioning */
+    line-height: 1.1;
+    margin-bottom: 30px; /* Adjusted margin for bottom spacing */
+  }
+
+  .more-skills-button {
+    margin-top: 30px;
+    margin-left: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f54b0c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+  }
+
+  .skills-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  #skills p {
+    color: #333;
+    line-height: 1.5;
+    margin-left: 20px; /* Adjusted margin for left positioning */
+    margin-right: 20px; /* Adjusted margin for right positioning */
+    margin-bottom: 30px;
+  }
+
+  .hand-gif {
+    display: none;
+  }
+
+  }
 
 /* Contact*/
 #contact {
@@ -784,3 +1002,8 @@
 .svg-path {
   transition: fill 0.3s;
 }
+
+@media (max-width: 768px) {
+  #contact {
+    height: 100vh;
+}}
