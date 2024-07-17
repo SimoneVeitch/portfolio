@@ -41,7 +41,7 @@ const Home = () => {
               }, 300); // Delay between sentences
             }
           }
-        }, 200); // Delay between words
+        }, 100); // Delay between words
       };
 
       // Start displaying sentences
