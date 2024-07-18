@@ -18,7 +18,7 @@ const Skills = () => {
     const [displayedSkills, setDisplayedSkills] = useState([]);
     const [startIndex, setStartIndex] = useState(0);
     const [showMoreButton, setShowMoreButton] = useState(true);
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768); 
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1280); 
 
     const h1Ref = useRef(null);
     const skillsContainerRef = useRef(null);
@@ -31,7 +31,6 @@ const Skills = () => {
         { image: html, title: 'HTML' },
         { image: cssImg, title: 'CSS' },
         { image: githubImg, title: 'GitHub' },
-        { image: designImg, title: 'Responsive Design' },
         { image: apiIntImg, title: 'API Integration' },
         { image: reactRouterImg, title: 'React Router' },
         { image: jiraImg, title: 'Jira' },
@@ -41,16 +40,25 @@ const Skills = () => {
         { image: npmImg, title: 'NPM' }
     ];
 
-
-
     useEffect(() => {
-    // Display initial set of skills
-    if (isSmallScreen) {
-        setDisplayedSkills(skillsList.slice(startIndex, startIndex + 4));
-    } else {
-        setDisplayedSkills(skillsList);
-    }
-}, [isSmallScreen, skillsList, startIndex]);
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 1440);
+        };
+    
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
+    useEffect(() => {
+        // Adjust displayedSkills based on screen size
+        if (isSmallScreen) {
+            setDisplayedSkills(skillsList.slice(startIndex, startIndex + 4));
+            setShowMoreButton(true);
+        } else {
+            setDisplayedSkills(skillsList);
+            setShowMoreButton(false);
+        }
+    }, [isSmallScreen, skillsList, startIndex]);
 
 
     useEffect(() => {
@@ -79,21 +87,21 @@ const Skills = () => {
     const handleShowMoreSkills = () => {
         const nextStartIndex = startIndex + 4;
 
-        if (nextStartIndex <= skillsList.length) {
+        if (nextStartIndex < skillsList.length) {
+            // Case when there are more skills to show
             setDisplayedSkills(skillsList.slice(startIndex, nextStartIndex));
-            setStartIndex(nextStartIndex >= skillsList.length ? 0 : nextStartIndex);
+            setStartIndex(nextStartIndex);
         } else {
+            // Case when we need to wrap around to the beginning of the list
             const remainingSkills = nextStartIndex - skillsList.length;
             const wrappedSkills = skillsList.slice(0, remainingSkills);
             const skillsToShow = skillsList.slice(startIndex).concat(wrappedSkills);
-
-            setDisplayedSkills(skillsToShow.slice(0, 4));
-            setStartIndex(remainingSkills);
+    
+            setDisplayedSkills(skillsToShow.slice(0, 4)); // Show next set of skills
+            setStartIndex(remainingSkills); // Reset startIndex
         }
-
-        if (nextStartIndex >= skillsList.length) {
-            setShowMoreButton(false);
-        }
+    
+        setShowMoreButton(true); // Always ensure the button is shown after clicking
     };
 
     useEffect(() => {
@@ -171,9 +179,6 @@ const Skills = () => {
                     More skills
                 </button>
             )}
-
-            {/* Hand clicking button GIF */}
-            <img src={hand} alt="Hand clicking button GIF" className="hand-gif" />
 
     
             <div className="scroll-down">

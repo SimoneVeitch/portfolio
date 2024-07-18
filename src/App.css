@@ -18,6 +18,7 @@
   align-items: center;
   scroll-snap-align: start;
   position: relative;
+  overflow: hidden;
 }
 
 .container {
@@ -363,7 +364,43 @@
 }
 
 /* Media query*/
-@media (max-width: 1280px) {
+@media (min-width: 728px) and (max-width: 1280px) {
+  .content-container {
+    flex-direction: column-reverse; 
+    margin-top: 200px;
+    align-items: center; 
+  }
+
+  .text-right p {
+    font-size: 25px; /* Adjust font size for mobile */
+    text-align: center;
+  }
+
+  .text-right {
+    margin-top: 25px;
+    margin-bottom: -15px;
+  }
+
+  .image-left,
+  .left-image {
+    width: 500px;
+    margin-top: -20px;
+    margin-bottom: -30px;
+  }
+
+  .center-image {
+    width: 500px;
+    margin-bottom: -30px;
+  }
+
+  .home-circle {
+    top: 18%; 
+    left: 50%; /* Moves the circle to the center horizontally */
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 728px) {
   .content-container {
     flex-direction: column-reverse; 
     margin-top: 200px;
@@ -417,7 +454,72 @@
   .left-image {
     margin-left: 70px;
   }
+}
 
+/* SMALL LAPTOP */
+@media (min-width:728px) and (max-width: 1440px) and (max-height: 800px)  {
+  
+.home-circle {
+  position: absolute;
+  top: 40%; /* Align at the top */
+  left: 15%; /* Align at the left */
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background-color: #239127;
+  display: flex;
+}
+
+.text-right p {
+  font-size: 35px;
+}
+
+.text-right {
+  margin-top: 20px;
+}
+
+.image-left,
+.left-image {
+  width: 450px;
+  margin-bottom: 70px;
+  margin-left: -10px;
+}
+
+.center-image {
+  width: 450px;
+}
+}
+  
+@media (min-width:  500px) and (max-width: 728px) and (max-height: 800px)  {
+  .home-circle {
+    top: 70%; 
+    left: 20%; 
+    transform: translateX(-50%);
+    background-color: rgb(230, 115, 197);
+    width: 90px;
+    height: 90px;
+  }
+
+  .text-right p {
+    font-size: 20px; 
+    text-align: center;
+  }
+
+  .text-right {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .image-left,
+  .left-image {
+    width: 400px;
+    margin-bottom: 50px;
+  }
+
+  .center-image {
+    width: 400px;
+    margin-bottom: -30px;
+  }
 }
 
 /* About */
@@ -680,6 +782,32 @@
   }
 }
 
+/* SMALL LAPTOP */
+@media (min-width:728px) and (max-width: 1440px) and (max-height: 800px)  {
+#about h1 {
+  color: green;
+}
+
+.face-reveal-gif {
+  width: 50%; /* Full width for mobile screens */
+  margin-top: 20px; /* Adjusted margin for spacing */
+  margin-bottom: 30px; /* Added margin for bottom spacing */
+    display: block; /* Ensure it's a block-level element */
+    right: 0;
+}
+}
+    
+  @media (min-width:  500px) and (max-width: 728px) and (max-height: 800px)  {
+   #about h1 {
+    color: purple;
+   }
+   
+    .face-reveal-gif {
+      margin-top: 0px;
+      bottom: 10%;; /* Added margin for bottom spacing */
+    }
+  }
+
 /* Projects */
 #projects {
   background-color: #fffdf6;
@@ -721,20 +849,8 @@
 #projects p {
   color: #333;
   line-height: 1.5;
-}
-
-.projects-container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  scroll-snap-type: x mandatory; /* Snap to each card */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
-  padding-bottom: 20px; /* Padding for scrollbar */
-  margin-left: -20px; }
-
-.projects-container:-webkit-scrollbar {
-  display: none; /* Hiding scrollbar for Chrome, Safari */
+  margin-left: 50px;
+  margin-bottom: 20px;
 }
 
 .project-card {
@@ -742,9 +858,10 @@
   border: none;
   overflow: hidden; 
   position: relative; 
-  flex: 0 0 auto;
-  margin-right: 30px;
-  scroll-snap-align: start;
+}
+
+.card-content {
+  margin-left: 50px;
 }
 
 .icons {
@@ -760,14 +877,11 @@
 }
 
 .project-image {
-  width: 100%; 
+  width: 350px; 
+  height: 250px;
   display: block;
   margin-bottom: 15px;
   transition: transform 0.3s ease-in-out;
-}
-
-.project-image-container {
-  overflow: hidden; /* Ensure image doesn't overflow its container */
 }
 
 .project-image:hover {
@@ -776,19 +890,13 @@
 
 .project-info p {
   text-align: left;
-  margin-top: 30px;
-  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
-.project-arrow {
-  width: 10px;
-  height: 10px;
-  border: solid #333;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  transform: rotate(45deg);
-  margin-left: 30px;
-  margin-bottom: 20px;
+.project-arrow p {
+  margin-left: 5px;
+  margin-bottom: 10px;
   margin-top: 15px;
 }
 
@@ -798,16 +906,48 @@
 }
 
 .button {
-  padding: 10px 20px;
-  background-color: #5856e4;
-  color: whitesmoke;
+  padding: 0px;
+  font-size: 12px;
+  border: none;
+  background-color: transparent; /* Set background-color to transparent */
+  color: #333;
   text-decoration: none;
-  border-radius: 10px;
   transition: background-color 0.3s ease-in-out;
   margin-right: 20px;
+  margin-bottom: 20px;
+  position: relative; /* Ensure proper positioning of the underline */
 }
 
 .button:hover {
+  background-color: transparent; /* Keep background-color transparent */
+}
+
+.button:hover::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px; /* Adjust line height as needed */
+  background-color: #ec670f;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.next-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #5856e4;
+  color: whitesmoke;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-left: 50px;
+}
+
+.next-button:hover {
   background-color: #ec670f; 
 }
 
@@ -825,47 +965,105 @@
   margin-bottom: 15px;
 }
 
-@media (max-width: 768px) {
 
-#projects h1 {
-  font-size: 40px; /* Reduced font size for mobile */
-  margin-top: 120px; /* Adjusted margin for top positioning */
-  margin-left: 20px; /* Adjusted margin for left positioning */
-  line-height: 1.1;
-  margin-bottom: 30px; /* Adjusted margin for bottom spacing */
-}
 
-#projects p {
-  color: #333;
-  line-height: 1.5;
-  margin-left: 20px; /* Adjusted margin for left positioning */
-  margin-right: 20px; /* Adjusted margin for right positioning */
-  margin-bottom: 20px;
-}
+/* SMALL LAPTOP */
+@media (min-width:900px) and (max-width: 1440px) and (max-height: 800px)  {
+  #projects h1 {
+    color: green;
+    margin-top: 120px;
+  }
 
-.projects-container {
-  overflow-x: scroll;
-  display: flex;
-  flex-wrap: nowrap;
-  padding-bottom: 20px; /* Add padding to accommodate scroll bar */
-  margin-left: -20px; /* Offset margin for better alignment */
-  margin-right: -20px; /* Offset margin to prevent right overflow */
-  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
-  scroll-snap-type: x mandatory; /* Enable snap scrolling */
-}
+  .project-image:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
+  }
 
-.project-card {
-  width: 300px; /* Adjusted width for mobile */
-  margin-right: 20px;
-  flex: 0 0 auto; /* Prevent card from shrinking on smaller screens */
-  scroll-snap-align: start; /* Snap each card to the start of the container */
-}
+  .card-gallery {
+    width: 250px; /* Adjust width as needed */
+    position: absolute;
+    bottom: 15%;
+    right: 27%;
+  }
 
-.project-card:first-child {
-  margin-left: 40px;
-}
+  .project-image {
+    width: 300px; 
+    height: 200px;
+    display: block;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease-in-out;
+  }
 
-}
+  .card-gallery h2 {
+    font-size: 20px;
+  }
+
+  .next-button {
+    margin-left: 50px;
+    position: absolute;
+    bottom: 25%;
+  }
+  }
+      
+    @media (min-width:  500px) and (max-width: 900px) and (max-height: 800px)  {
+     #projects h1 {
+      color: purple;
+      font-size: 90px;
+     }
+
+     .project-intro  {
+      width: 50%;
+     }
+
+     .project-image:hover {
+      transform: scale(1.1); /* Zoom effect on hover */
+    }
+  
+    .card-gallery {
+      width: 250px; /* Adjust width as needed */
+      position: absolute;
+      bottom: 10%;
+      right: 20%;
+      top: 20%;
+    }
+  
+    .project-image {
+      width: 300px; 
+      height: 200px;
+      display: block;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    .card-gallery h2 {
+      font-size: 20px;
+    }
+  
+    .next-button {
+      margin-left: 50px;
+      position: absolute;
+      bottom: 25%;
+    }
+    }
+
+    @media (max-width:  768px)  {
+      .card-gallery h2 {
+        font-size: 20px;
+      }
+
+      .project-image {
+        width: 300px; 
+        height: 200px;
+      }
+
+      .card-gallery {
+        bottom: 30%;
+        right: 50%;
+      }
+
+      .next-button {
+        bottom: 10%;
+      }
+  }
 
 /* Skills*/
 #skills .section {
@@ -920,7 +1118,8 @@
   gap: 20px;
   flex-wrap: wrap;
   margin-left: 0;
-  width: 70%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .skills-card {
@@ -945,16 +1144,6 @@
   margin-top: 1opx
 }
 
-.hand-gif {
-  width: 250px;
-  display: flex;
-  justify-self: right;
-    position: absolute;
-    top: auto;
-    right: 15%;
-    bottom: -10%;
-}
-
 .skills-content {
   padding: 20px;
 }
@@ -974,16 +1163,19 @@
 }
 
 .more-skills-button {
-display: none;
+  margin-top: 30px;
+  margin-left: 30px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f54b0c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
 }
 
 @media (max-width: 768px) {
-
-  .skills-container {
-    width: 100%; /* Full width on mobile */
-    margin-left: 20px;
-    gap: 10px;
-}
 
 .skills-card {
     width: calc(50% - 10px); /* Two cards per row on mobile */
@@ -1130,4 +1322,32 @@ display: none;
 @media (max-width: 768px) {
   #contact {
     height: 100vh;
-}}
+}
+  #contact h1 {
+    font-size: 40px; /* Reduced font size for mobile */
+    margin-top: 120px; /* Adjusted margin for top positioning */
+    margin-left: 20px;
+    margin-right: 100px; /* Adjusted margin for left positioning */
+    line-height: 1.2;
+    margin-bottom: 30px; /* Adjusted margin for bottom spacing */
+  }
+  
+  #contact p {
+    color: #333;
+    line-height: 1.5;
+    margin-left: 20px; /* Adjusted margin for left positioning */
+    margin-right: 20px; /* Adjusted margin for right positioning */
+    margin-bottom: 20px;
+  }
+
+  .email-circle {
+    width: 60px; 
+    height: 60px; 
+  }
+
+  .circle {
+    width: 60px; 
+    height: 60px; 
+    margin-left: 25px;
+  }
+}
