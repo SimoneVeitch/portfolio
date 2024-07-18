@@ -10,6 +10,25 @@ import reactRouterImg from '../Images/react-router-svgrepo-com.svg';
 
 const Projects = () => {
     const h1Ref = useRef(null);
+    const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 1440);
+    const [showProjectInfoModal, setShowProjectInfoModal] = useState(false);
+
+    const openProjectInfoModal = () => {
+        setShowProjectInfoModal(true);
+    };
+
+    const closeProjectInfoModal = () => {
+        setShowProjectInfoModal(false);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsLargeScreen(window.innerWidth > 1440);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
@@ -59,7 +78,6 @@ const Projects = () => {
     };
 
     const [showProjectInfo, setShowProjectInfo] = useState(false);
-
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     
 
@@ -76,44 +94,77 @@ const Projects = () => {
             </p>
 
             <div className="card-gallery">
-                {cardData.map((card, index) => (
-                    <div
-                        key={card.id}
-                        className="card-content"
-                        style={{
-                            display: index === currentCardIndex ? 'block' : 'none',
-                        }}
-                    >
-                        {/* You can customize the card content here */}
-                        <h2>{card.title}</h2>
+                {isLargeScreen ? (
+                    // Display all project cards next to each other on screens larger than 1440px
+                    <div className="card-gallery-large">
+                        {cardData.map((card) => (
+                            <div key={card.id} className="card-content">
+                                <h2>{card.title}</h2>
+
+                                <div className="icons">
+                                    {card.icons.map((icon, i) => (
+                                        <img key={i} src={icon} alt={`${card.title} icon ${i}`} className="project-icon" />
+                                    ))}
+                                </div>
+
+                                <img src={card.image} alt={card.title} className="project-image" />
+
+                                <div className="project-arrow" onClick={openProjectInfoModal}>
+                                    <p>Project info ➜</p>
+                                </div>
+
+                
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    // Display only one project card at a time on screens smaller than or equal to 1440px
+                    <div className="card-content">
+                        <h2>{cardData[currentCardIndex].title}</h2>
 
                         <div className="icons">
-                            {card.icons.map((icon, i) => (
-                                <img key={i} src={icon} alt={`${card.title} icon ${i}`} className="project-icon" />
+                            {cardData[currentCardIndex].icons.map((icon, i) => (
+                                <img key={i} src={icon} alt={`${cardData[currentCardIndex].title} icon ${i}`} className="project-icon" />
                             ))}
                         </div>
 
-                        <img src={card.image} alt={card.title} className="project-image" />
+                        <img src={cardData[currentCardIndex].image} alt={cardData[currentCardIndex].title} className="project-image" />
 
-                        <div className="project-arrow" onClick={() => toggleProjectInfo(2)}>
-                        <p>Project info ➜</p>
+                        <div className="project-arrow" onClick={openProjectInfoModal}>
+                            <p>Project info ➜</p>
                         </div>
 
-                        {showProjectInfo && (
-                            <div className="project-info">
-                                <p>{card.info}</p>
-                                <div className="buttons">
-                            {card.buttons.map((button, i) => (
+        
+                    </div>
+                )}
+            </div>
+
+      {/* Project Info Modal */}
+      {showProjectInfoModal && (
+                <div className="profile-modal open">
+                    <div className="profile-modal-content">
+                        <button className="close-modal-btn" onClick={closeProjectInfoModal}>
+                            &times;
+                        </button>
+                        <h2>{cardData[currentCardIndex].title}</h2>
+                        <p className="profile-text">
+                            {cardData[currentCardIndex].info}
+                        </p>
+                        <div className="buttons">
+                            {cardData[currentCardIndex].buttons.map((button, i) => (
                                 <a key={i} href={button.url} className="button" target="_blank" rel="noopener noreferrer">{button.label}</a>
                             ))}
                         </div>
-                            </div>
-                        )}
                     </div>
-                ))}
-            </div>
-            <button className="next-button" onClick={nextCard}>Next project</button>
-            <div className="scroll-down">
+                </div>
+            )}
+
+            {/* Display next button only on screens smaller than or equal to 1440px */}
+            {!isLargeScreen && (
+                <button className="next-button" onClick={nextCard}>Next project</button>
+            )}
+           
+             <div className="scroll-down">
         <p>Scroll</p>
         <div className="arrow"></div>
       </div>

@@ -965,7 +965,18 @@
   margin-bottom: 15px;
 }
 
+.card-gallery-large {
+  display: flex;
+  justify-content: space-between; /* Ensure cards are evenly spaced */
+  gap: 20px; /* Adjust spacing between cards */
+}
 
+.card-gallery-large  .card-content {
+  /* Styles for individual card content */
+  width: calc(33.33% - 20px); /* Adjust width to fit three cards per row with spacing */
+  margin-bottom: 20px; /* Adjust margin between cards */
+  /* Additional styles as needed */
+}
 
 /* SMALL LAPTOP */
 @media (min-width:900px) and (max-width: 1440px) and (max-height: 800px)  {
@@ -1229,6 +1240,57 @@
   }
 
   }
+
+  /* SMALL LAPTOP */
+@media (min-width:900px) and (max-width: 1440px) and (max-height: 800px)  {
+  #skills h1 {
+    color: green;
+    margin-top:120px;
+    font-size:90px;
+  }
+
+  .skills-content {
+    padding: 10%;
+  }
+  
+  .skills-card img {
+    height: 40px;
+    width: auto;
+    margin-bottom: 10px;
+  }
+
+  .skills-card {
+    margin-bottom: 0px;
+  }
+  
+ 
+  }
+      
+    @media (min-width:  500px) and (max-width: 900px) and (max-height: 800px)  {
+     #skills h1 {
+      color: purple;
+      font-size: 70px;
+      margin-top: 100px;
+     }
+
+     .skills-card img {
+      height: 30px;
+      width: auto;
+      margin-bottom: 10px;
+      padding: 0px;
+    }
+
+    .skills-card {
+      padding: 0px;
+    }
+
+    .skills-container {
+      gap: 5px;
+
+    }
+     
+
+    }
 
 /* Contact*/
 #contact {
