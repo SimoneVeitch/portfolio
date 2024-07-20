@@ -85,23 +85,12 @@ const Skills = () => {
     }, []);
 
     const handleShowMoreSkills = () => {
-        const nextStartIndex = startIndex + 4;
-
-        if (nextStartIndex < skillsList.length) {
-            // Case when there are more skills to show
-            setDisplayedSkills(skillsList.slice(startIndex, nextStartIndex));
-            setStartIndex(nextStartIndex);
-        } else {
-            // Case when we need to wrap around to the beginning of the list
-            const remainingSkills = nextStartIndex - skillsList.length;
-            const wrappedSkills = skillsList.slice(0, remainingSkills);
-            const skillsToShow = skillsList.slice(startIndex).concat(wrappedSkills);
+        const nextStartIndex = (startIndex + 4) % skillsList.length;
+        const nextSkills = skillsList.slice(nextStartIndex, nextStartIndex + 4);
     
-            setDisplayedSkills(skillsToShow.slice(0, 4)); // Show next set of skills
-            setStartIndex(remainingSkills); // Reset startIndex
-        }
-    
-        setShowMoreButton(true); // Always ensure the button is shown after clicking
+        setStartIndex(nextStartIndex);
+        setDisplayedSkills(nextSkills);
+        setShowMoreButton(nextStartIndex !== 0);
     };
 
     useEffect(() => {

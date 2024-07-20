@@ -91,6 +91,18 @@ const Home = () => {
           </div>
           {showCircle && (
           <div className="home-circle">
+            <svg viewBox="0 0 300 300">
+                <defs>
+                    <path id="circlePath" d="M 150, 150 m -75, 0 a 75,75 0 0,1 150,0 a 75,75 0 0,1 -150,0 "/>
+                </defs>
+                <circle cx="150" cy="150" r="75" fill="none"/>
+                <g>
+                    <use xlinkHref="#circlePath" fill="none"/>
+                    <text fill="#000" fontSize="24">
+                        <textPath xlinkHref="#circlePath">Hire Me</textPath>
+                    </text>
+                </g>
+            </svg>
         </div>
         )}
       </div>

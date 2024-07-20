@@ -363,6 +363,27 @@
   display: flex;
 }
 
+
+.home-circle svg {
+  width: 100%;
+  height: 100%;
+  animation: rotate 5s linear infinite; /* Adjust animation duration and timing */
+  transform-origin: center;
+}
+
+.home-circle text {
+  font-size: 20px; /* Adjust font size as needed */
+}
+
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
 /* Media query*/
 @media (min-width: 728px) and (max-width: 1280px) {
   .content-container {
