@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
-import woman from '../Images/happy-woman-greeting-with-hi-gesture-waving-with-hand-smiling-portrait-friendly-female-saying-hello-welcoming-smb-flat-vector-illustration-isolated-white-background.png';
+import React, { useState, useEffect } from 'react';
+import idle from '../Images/large_idle.gif';
+import wave from '../Images/large_wave_new.gif';
 
-const Home = () => {
-    const [showText, setShowText] = useState(false);
+const Home = ( {scrollToBottom}) => {
+  const [showText, setShowText] = useState(false);
   const [sentences] = useState([
     "Hi! I'm Simone.",
     "A junior front end developer.",
@@ -10,11 +11,7 @@ const Home = () => {
   const [displayedSentences, setDisplayedSentences] = useState([]);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const circleTextRef = useRef(null);
   const [showCircle, setShowCircle] = useState(false);
-
-
-    // Effect to manage text animation
 
   useEffect(() => {
     let timer;
@@ -31,55 +28,66 @@ const Home = () => {
               updatedSentences[index] = words.slice(0, currentWordIndex + 1).join(' ');
               return updatedSentences;
             });
-            setCurrentWordIndex(currentWordIndex + 1); // Increment word index
+            setCurrentWordIndex(currentWordIndex + 1); 
           } else {
             clearInterval(timer);
             if (index + 1 < sentences.length) {
               setTimeout(() => {
-                setCurrentSentenceIndex(index + 1); // Move to next sentence
-                setCurrentWordIndex(0); // Reset word index for new sentence
-              }, 300); // Delay between sentences
+                setCurrentSentenceIndex(index + 1); 
+                setCurrentWordIndex(0); 
+              }, 300); 
             }
           }
-        }, 100); // Delay between words
+        }, 100); 
       };
 
-      // Start displaying sentences
       displayNextSentence(currentSentenceIndex);
     }
 
-    // Cleanup timer
     return () => {
       clearInterval(timer);
     };
   }, [showText, sentences, currentSentenceIndex, currentWordIndex]);
 
-  // Handler for handling click event on image
   const handleClick = () => {
     setTimeout(() => {
       setShowCircle(true);
-    }, 4000); // Delay for 5 seconds to show the circle
-    setShowText(true); // Immediately show the text
+    }, 4000); 
+    setShowText(true); 
   };
 
   return (
-       <section id="home" className="section">
+    <section id="home" className="section">
       {!showText ? (
-        // Display initial image and handle click event
+        // Initial disolay
         <div className="image-container">
           <img
-            src={woman}
+            src={idle}
             alt="Simone"
             className="center-image"
             onClick={handleClick}
           />
+          <div className="click-circle" onClick={handleClick}>
+              <svg viewBox="0 0 300 300">
+                <defs>
+                  <path id="circlePath" d="M 150, 150 m -75, 0 a 75,75 0 0,1 150,0 a 75,75 0 0,1 -150,0 " />
+                </defs>
+                <circle cx="150" cy="150" r="75" fill="none" />
+                <g>
+                  <use xlinkHref="#circlePath" fill="none" />
+                  <text fill="#fff" fontSize="40">
+                    <textPath xlinkHref="#circlePath">Click Me</textPath>
+                  </text>
+                </g>
+              </svg>
+            </div>
         </div>
       ) : (
-        // Display content after text is shown
+        // After click display
         <div className="content-container">
           <div className="image-left">
             <img
-              src={woman}
+              src={wave}
               alt="Simone"
               className="left-image"
             />
@@ -90,24 +98,24 @@ const Home = () => {
             ))}
           </div>
           {showCircle && (
-          <div className="home-circle">
-            <svg viewBox="0 0 300 300">
+            <div className="home-circle" onClick={scrollToBottom}>
+              <svg viewBox="0 0 300 300">
                 <defs>
-                    <path id="circlePath" d="M 150, 150 m -75, 0 a 75,75 0 0,1 150,0 a 75,75 0 0,1 -150,0 "/>
+                  <path id="circlePath" d="M 150, 150 m -75, 0 a 75,75 0 0,1 150,0 a 75,75 0 0,1 -150,0 " />
                 </defs>
-                <circle cx="150" cy="150" r="75" fill="none"/>
+                <circle cx="150" cy="150" r="75" fill="none" />
                 <g>
-                    <use xlinkHref="#circlePath" fill="none"/>
-                    <text fill="#000" fontSize="24">
-                        <textPath xlinkHref="#circlePath">Hire Me</textPath>
-                    </text>
+                  <use xlinkHref="#circlePath" fill="none" />
+                  <text fill="#fff" fontSize="40">
+                    <textPath xlinkHref="#circlePath">Hire Me</textPath>
+                  </text>
                 </g>
-            </svg>
+              </svg>
+            </div>
+          )}
         </div>
-        )}
-      </div>
       )}
-      <div className="mobile-cta"></div>
+
       <div className="scroll-down">
         <p>Scroll</p>
         <div className="arrow"></div>

@@ -14,7 +14,7 @@ function App() {
   const contactRef = useRef(null);
   const containerRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -30,19 +30,32 @@ function App() {
         behavior: "smooth",
       });
 
-      // Close menu on mobile after clicking a link
       setMenuOpen(false);
     }
   };
 
   const scrollToTop = () => {
+    console.log("Scrolling to top...");
     if (containerRef.current) {
       containerRef.current.scrollTo({
         top: 0,
         behavior: "smooth",
       });
 
-      // Close menu on mobile after clicking a link
+      setMenuOpen(false);
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (contactRef.current && containerRef.current) {
+      const containerTop = containerRef.current.offsetTop;
+      const sectionTop = contactRef.current.offsetTop - containerTop;
+
+      containerRef.current.scrollTo({
+        top: sectionTop,
+        behavior: "smooth",
+      });
+
       setMenuOpen(false);
     }
   };
@@ -67,7 +80,7 @@ function App() {
       </nav>
       <div className="container" ref={containerRef}>
         <div ref={homeRef}>
-          <Home />
+          <Home scrollToBottom={scrollToBottom} />
         </div>
         <div ref={aboutRef}>
           <About />

@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import hand from '../Images/hand.gif';
 import javascript from '../Images/javascript-svgrepo-com.svg';
 import reactImg from '../Images/react-svgrepo-com.svg';
 import html from '../Images/html-5-svgrepo-com.svg';
 import cssImg from '../Images/css3-svgrepo-com.svg';
 import githubImg from '../Images/github-142-svgrepo-com.svg';
-import designImg from '../Images/responsive-device-svgrepo-com.svg';
 import apiIntImg from '../Images/api-svgrepo-com.svg';
 import reactRouterImg from '../Images/react-router-svgrepo-com.svg';
 import jiraImg from '../Images/jira-svgrepo-com.svg';
@@ -18,13 +16,12 @@ const Skills = () => {
     const [displayedSkills, setDisplayedSkills] = useState([]);
     const [startIndex, setStartIndex] = useState(0);
     const [showMoreButton, setShowMoreButton] = useState(true);
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1280); 
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
     const h1Ref = useRef(null);
     const skillsContainerRef = useRef(null);
     const scrollDownRef = useRef(null);
 
-    // Array of all skills cards
     const skillsList = [
         { image: javascript, title: 'JavaScript' },
         { image: reactImg, title: 'React' },
@@ -44,25 +41,46 @@ const Skills = () => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth < 1440);
         };
-    
+
+        setIsSmallScreen(window.innerWidth < 1440);
+
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-    
+
     useEffect(() => {
-        // Adjust displayedSkills based on screen size
+        let newDisplayedSkills = [];
+        let newShowMoreButton = false;
+
         if (isSmallScreen) {
-            setDisplayedSkills(skillsList.slice(startIndex, startIndex + 4));
-            setShowMoreButton(true);
+            newDisplayedSkills = skillsList.slice(startIndex, startIndex + 4);
+            newShowMoreButton = true;
         } else {
-            setDisplayedSkills(skillsList);
-            setShowMoreButton(false);
+            newDisplayedSkills = skillsList;
+            newShowMoreButton = false;
         }
-    }, [isSmallScreen, skillsList, startIndex]);
 
+        // Check if the new state is different before updating
+        if (!arraysEqual(newDisplayedSkills, displayedSkills)) {
+            setDisplayedSkills(newDisplayedSkills);
+        }
 
+        if (newShowMoreButton !== showMoreButton) {
+            setShowMoreButton(newShowMoreButton);
+        }
+    }, [isSmallScreen, skillsList, startIndex, displayedSkills, showMoreButton]);
+
+// Utility function to compare arrays
+function arraysEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i].image !== arr2[i].image || arr1[i].title !== arr2[i].title) {
+            return false;
+        }
+    }
+    return true;
+}
     useEffect(() => {
-        // Intersection observer for h1Ref
         const h1Observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -72,7 +90,7 @@ const Skills = () => {
                 }
             });
         }, {
-            threshold: 0.5 // Adjust as needed
+            threshold: 0.5 
         });
 
         if (h1Ref.current) {
@@ -84,37 +102,16 @@ const Skills = () => {
         };
     }, []);
 
-    {/*const handleShowMoreSkills = () => {
-        const nextStartIndex = startIndex + 4;
-
-        if (nextStartIndex < skillsList.length) {
-            // Case when there are more skills to show
-            setDisplayedSkills(skillsList.slice(startIndex, nextStartIndex));
-            setStartIndex(nextStartIndex);
-        } else {
-            // Case when we need to wrap around to the beginning of the list
-            const remainingSkills = nextStartIndex - skillsList.length;
-            const wrappedSkills = skillsList.slice(0, remainingSkills);
-            const skillsToShow = skillsList.slice(startIndex).concat(wrappedSkills);
-    
-            setDisplayedSkills(skillsToShow.slice(0, 4)); // Show next set of skills
-            setStartIndex(remainingSkills); // Reset startIndex
-        }
-    
-        setShowMoreButton(true); // Always ensure the button is shown after clicking
-    };*/}
-
     const handleShowMoreSkills = () => {
         const nextStartIndex = (startIndex + 4) % skillsList.length;
         const nextSkills = skillsList.slice(nextStartIndex, nextStartIndex + 4);
-    
+
         setStartIndex(nextStartIndex);
         setDisplayedSkills(nextSkills);
         setShowMoreButton(nextStartIndex !== 0);
     };
 
     useEffect(() => {
-        // Intersection observer for skillsContainerRef
         const skillsObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -128,7 +125,7 @@ const Skills = () => {
                 }
             });
         }, {
-            threshold: 0.5 // Adjust as needed
+            threshold: 0.5 
         });
 
         if (skillsContainerRef.current) {
@@ -141,17 +138,16 @@ const Skills = () => {
     }, []);
 
     useEffect(() => {
-        // Intersection observer for scrollDownRef
         const scrollDownObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.intersectionRatio === 1) {
-                    scrollDownRef.current.style.display = 'flex'; // Show scroll-down div
+                    scrollDownRef.current.style.display = 'flex'; 
                 } else {
-                    scrollDownRef.current.style.display = 'none'; // Hide scroll-down div
+                    scrollDownRef.current.style.display = 'none'; 
                 }
             });
         }, {
-            threshold: 1 // Trigger when the component is fully in view
+            threshold: 1 
         });
 
         if (scrollDownRef.current) {
@@ -167,7 +163,7 @@ const Skills = () => {
         <section id="skills" className="section">
             <h1 ref={h1Ref} className="title-animated-text">Skills</h1>
             <p>
-                Let's team up, collaborate, and turn ideas into reality! <br />Be part of my journey as we create and innovate together.
+            Check out my skills below - I am learning and growing every day!
             </p>
 
             <div ref={skillsContainerRef} className="skills-container">
@@ -189,11 +185,9 @@ const Skills = () => {
                 </button>
             )}
 
-    
             <div className="scroll-down">
-        <p>Scroll</p>
-        <div className="arrow"></div>
-      </div>
+                <div className="arrow"></div>
+            </div>
         </section>
     );
 };
