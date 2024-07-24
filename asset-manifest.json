@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/portfolio/static/css/main.4911f120.css",
+    "main.js": "/portfolio/static/js/main.23feffe8.js",
+    "static/js/453.534db5b8.chunk.js": "/portfolio/static/js/453.534db5b8.chunk.js",
+    "static/media/large_idle.gif": "/portfolio/static/media/large_idle.bf938a06fdcef2be2ce9.gif",
+    "static/media/head_pop.gif": "/portfolio/static/media/head_pop.84fd6b71527b527776ce.gif",
+    "static/media/furry_fave_sceen.png": "/portfolio/static/media/furry_fave_sceen.ba398c4611aa97ab65c9.png",
+    "static/media/climate_screen.png": "/portfolio/static/media/climate_screen.1bfb529113b1e62c0dad.png",
+    "static/media/bedtime_screen.png": "/portfolio/static/media/bedtime_screen.8f6832222417e1a8a20f.png",
+    "static/media/large_wave_new.gif": "/portfolio/static/media/large_wave_new.509443d8480a7f7eda0d.gif",
+    "static/media/visual-studio-code-svgrepo-com.svg": "/portfolio/static/media/visual-studio-code-svgrepo-com.824262b9f834a230848644b6490696f9.svg",
+    "static/media/react-svgrepo-com.svg": "/portfolio/static/media/react-svgrepo-com.6a44992cebfd575157df54dc0d9aa479.svg",
+    "static/media/adobe-illustrator-svgrepo-com.svg": "/portfolio/static/media/adobe-illustrator-svgrepo-com.82d7caded3f86f9f8cd9b1536916b31c.svg",
+    "static/media/react-router-svgrepo-com.svg": "/portfolio/static/media/react-router-svgrepo-com.c56a129d1f7a175c05cd90dfed198098.svg",
+    "static/media/jira-svgrepo-com.svg": "/portfolio/static/media/jira-svgrepo-com.eba5f74d5acb292731308e2b7025d404.svg",
+    "static/media/github-142-svgrepo-com.svg": "/portfolio/static/media/github-142-svgrepo-com.205490ac0f859efb61e82b8f0ed18e8c.svg",
+    "index.html": "/portfolio/index.html",
+    "static/media/api-svgrepo-com.svg": "/portfolio/static/media/api-svgrepo-com.c83b43f13de47e7ab73759978032f740.svg",
+    "static/media/gantt-solid-svgrepo-com.svg": "/portfolio/static/media/gantt-solid-svgrepo-com.c32e6841702d18b0cbfc40e0883fcf3c.svg",
+    "static/media/javascript-svgrepo-com.svg": "/portfolio/static/media/javascript-svgrepo-com.e9ddd9863a1e157c2a84c1edd57d45eb.svg",
+    "static/media/css3-svgrepo-com.svg": "/portfolio/static/media/css3-svgrepo-com.77472e73fcba3ed5bc9eea29c300745b.svg",
+    "static/media/npm-icon-svgrepo-com.svg": "/portfolio/static/media/npm-icon-svgrepo-com.53e65cf631bda630d37f0e127f09ffab.svg",
+    "static/media/html-5-svgrepo-com.svg": "/portfolio/static/media/html-5-svgrepo-com.09e6043f9cf44850f7ecbaad9a809ad1.svg",
+    "main.4911f120.css.map": "/portfolio/static/css/main.4911f120.css.map",
+    "main.23feffe8.js.map": "/portfolio/static/js/main.23feffe8.js.map",
+    "453.534db5b8.chunk.js.map": "/portfolio/static/js/453.534db5b8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4911f120.css",
+    "static/js/main.23feffe8.js"
+  ]
+}
