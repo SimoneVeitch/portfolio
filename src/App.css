@@ -531,7 +531,7 @@
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background-color: #5856e4;
+  background-color: #f54b0c;
   display: flex;
 }
 
@@ -571,7 +571,7 @@
     top: 70%; 
     left: 20%; 
     transform: translateX(-50%);
-    background-color: #5856e4;
+    background-color: #f54b0c;
     width: 90px;
     height: 90px;
   }
@@ -596,11 +596,11 @@
 
   .center-image {
     width: 350px;
-    margin-bottom: -30px;
+    margin-bottom: 250px;
   }
 
   .click-circle {
-    top: -25%; 
+    top: -15%; 
     left: 50%; 
     transform: translateX(-50%);
   }
@@ -843,6 +843,8 @@
 }
     
   @media (min-width:  500px) and (max-width: 728px) and (max-height: 800px)  {
+
+    /* padding issue. Investigate */
     #about h1 {
       margin-left: 60px;
       margin-top: 120px;
@@ -851,6 +853,7 @@
     #about p {
       margin-left: 60px;
     }
+
     #about 
     .toggle-profile-btn {
       margin-left: 60px;
@@ -1056,22 +1059,21 @@
   .card-gallery {
     width: 250px; 
     position: absolute;
-    bottom: 15%;
+    bottom: 7.5%;
     right: 30%;
   }
 
   .project-image {
-    width: 300px; 
-    height: 200px;
+    width: 350px; 
+    height: 260px;
     display: block;
     margin-bottom: 15px;
     transition: transform 0.3s ease-in-out;
   }
 
-  /* on two lines, need to investigate */
-  .card-gallery h2 {
+#projects h2 {
     font-size: 20px;
-    margin-right: 0px;
+    width: 350px;
   }
 
   .next-button {
@@ -1080,15 +1082,38 @@
     bottom: 35%;
     background-color: #333;
   }
+
+  #projects .profile-text {
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+
+  #projects .profile-text-h2 {
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .profile-modal-content {
+    margin-bottom: 30px;
+  }
   }
       
 @media (min-width:  500px) and (max-width: 900px) and (max-height: 800px)  {
      #projects h1 {
       margin-left: 60px;
      }
+
+     #projects h2 {
+      width: 200px;
+      font-size: 20px;
+     }
      
      #projects p {
-      width: 50%;
+      width: 40%;
       margin-left: 60px;
      }
 
@@ -1097,16 +1122,15 @@
     }
   
     .card-gallery {
-      width: 250px; 
       position: absolute;
-      bottom: 10%;
-      right: 20%;
-      top: 30%;
+      bottom: 15%;
+      right: 10%;
+      top: 25%;
     }
   
     .project-image {
       width: 300px; 
-      height: 200px;
+      height: 250px;
       display: block;
       margin-bottom: 15px;
       transition: transform 0.3s ease-in-out;
@@ -1116,10 +1140,27 @@
       font-size: 20px;
     }
   
-    .next-button {
+    #projects .next-button {
       margin-left: 60px;
-      position: absolute;
-      bottom: 30%;
+    }
+
+    #projects .profile-text {
+      margin-left: 50px;
+      margin-right: 50px;
+      font-size: 12px;
+      margin-bottom: 30px;
+      width: 80%;
+    }
+  
+    #projects .profile-text-h2 {
+      margin-left: 50px;
+      margin-right: 50px;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+  
+    .profile-modal-content {
+      margin-bottom: 30px;
     }
     }
 
@@ -1174,10 +1215,31 @@
 
     #projects h1 {
       margin-top: 120px;
+      font-size: 40px; 
+      margin-left: 60px;
     }
 
     .icons {
       display: none;
+    }
+
+    .project-image {
+      width: 320px;
+      height: 240px;
+    }
+
+    .card-gallery {
+      right: 26%;
+      top: 28%;
+    }
+
+    #projects .next-button {
+      margin-left: 60px;
+      margin-top: 320px;
+    }
+
+    #projects h2 {
+      width: 300px;
     }
   }
 
@@ -1367,15 +1429,23 @@
 
   .skills-card {
     margin-bottom: 0px;
-    
+  }
+
+  .skills-card {
+    margin-left: 20px;
   }
   
   }
       
     @media (min-width:  500px) and (max-width: 900px) and (max-height: 800px)  {
      #skills h1 {
-      font-size: 70px;
-      margin-top: 100px;
+      font-size: 40px; 
+      margin-left: 60px;
+      margin-top: 120px;
+     }
+
+     #skills p {
+      margin-left: 60px;
      }
 
      .skills-card img {
@@ -1393,6 +1463,10 @@
 
     .skills-container {
       gap: 5px;
+    }
+
+    .more-skills-button {
+      margin-left: 60px;
     }
 
     }
@@ -1544,6 +1618,7 @@
 @media (min-width:900px) and (max-width: 1440px) and (max-height: 800px)  {
   #contact h1 {
     font-size: 90px;
+    margin-bottom: 0px;
   }
 
 
@@ -1554,6 +1629,10 @@
 
 .section .contact-p {
   display: none;
+}
+
+.email-circle, .circle {
+  margin-top: 10px;
 }
 }
 
@@ -1567,4 +1646,29 @@
   height: 60px; 
 }
 
+}
+
+@media (min-width:  500px) and (max-width: 900px) and (max-height: 800px)  {
+
+  #contact h1 {
+    font-size: 40px; 
+    margin-left: 60px;
+    margin-bottom: 5px;
+  }
+
+  .social-links {
+    margin-left: 40px;
+  }
+
+  #contact p {
+    margin-left: 60px;
+  }
+
+.contact-p {
+    display: none;
+  }
+
+  .social-links {
+
+  }
 }
