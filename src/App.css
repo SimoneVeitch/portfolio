@@ -678,14 +678,18 @@
 
   .image-left,
 .left-image {
-  width: 600px;
+  width: 500px;
   margin-bottom: 30px;
   margin-left: 50px;
 }
 
 .center-image {
-  width: 600px;
+  width: 500px;
   margin-bottom: 40px;
+}
+
+.click-circle {
+  top: -10%;
 }
 
 }
