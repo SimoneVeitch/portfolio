@@ -36,7 +36,7 @@ const About = () => {
       <div className="about-copy">
         <h1 ref={h1Ref} className="title-animated-text">Coding with heart<br />and enthusiasm</h1>
         <p className="about-p">
-        I am just getting started on my coding adventure, but I have already built a strong foundation. <br />I can't wait to level up and create some digital magic!
+        I am just getting started on my coding journey, but I have already built a strong foundation. 
         </p>
       </div>
 

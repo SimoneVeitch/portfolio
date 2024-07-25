@@ -30,7 +30,7 @@ const Contact = ({ scrollToTop }) => {
       <div className="social-links">
         {/* LinkedIn Link */}
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/in/simone-veitch"
           target="_blank"
           rel="noopener noreferrer"
           className="social-link linkedin-link"
@@ -44,7 +44,7 @@ const Contact = ({ scrollToTop }) => {
 
         {/* GitHub Link */}
         <a
-          href="https://www.github.com/"
+          href="https://github.com/SimoneVeitch"
           target="_blank"
           rel="noopener noreferrer"
           className="social-link github-link"

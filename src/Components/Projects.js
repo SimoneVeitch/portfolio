@@ -95,7 +95,7 @@ const Projects = () => {
         <section id="projects" className="section">
             <h1 ref={h1Ref} className="title-animated-text">Projects</h1>
             <p className="project-intro">
-                Scroll through my projects to see what I have been building.<br />Check back weekly for new additions as I code daily to sharpen my skills! 
+                Scroll through my projects to see what I have been building. Check back weekly for new additions as I code daily to sharpen my skills! 
             </p>
 
             <div className="card-gallery">
