@@ -50,8 +50,7 @@ const About = () => {
           <p className="profile-text">
             Hailing from Denmark, I have called Melbourne home for the last 12 years. Despite a successful career in project management spanning over a decade, I have come to realise that my passion lies in creating digital experiences rather than overseeing projects. <br /><br />
             In January 2024, I embarked on an exciting new chapter by completing Academy Xi's rigorous 18-week Front End Transform course. This immersive experience equipped me with proficiency in HTML5, CSS, JavaScript, and React.<br /><br />
-            I am enthusiastic about continuing my journey in web development, dedicating myself to daily coding practice to enhance my skills and embrace new challenges.  Although I am still early in my career transition, my determination and commitment drive me to continuously learn and evolve.<br /><br />
-            I am excited to transition into a role where I can apply my skills to build engaging web applications, while continuing to grow as a front-end web developer. 
+            I am enthusiastic about continuing my journey in web development, dedicating myself to daily coding practice to enhance my skills and embrace new challenges.  Although I am still early in my career transition, my determination and commitment drive me to continuously learn and evolve.
           </p>
         </div>
       </div>

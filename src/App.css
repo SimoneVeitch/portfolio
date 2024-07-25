@@ -979,6 +979,17 @@
     .face-reveal-gif {
       bottom: 100px; 
     }
+
+    #about .profile-text {
+      font-size: 12px;
+      margin-left: 40px;
+      margin-right: 30px;
+    }
+
+    #about h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
     
     }
 
