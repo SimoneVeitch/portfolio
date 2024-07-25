@@ -523,7 +523,7 @@
 
 }
 
-@media (min-width:728px) and (max-width: 1600px) and (max-height: 800px)  {
+@media (min-width:728px) and (max-width: 1440px) and (max-height: 800px)  {
 .home-circle {
   position: absolute;
   top: 40%; 
@@ -563,6 +563,14 @@
 .click-circle {
   top: 5%; 
   left: 10%;
+}
+
+.image-container {
+  width: 600px;
+}
+
+.content-container {
+  width: 800px;
 }
 }
   
