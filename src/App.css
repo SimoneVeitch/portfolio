@@ -1437,6 +1437,21 @@
   }
 }
 
+@media (min-width:1280px) and (max-width: 1440px) and (max-height: 800px)  {
+
+  .project-image {
+    width: 450px;
+    height: 350px;
+  }
+  .card-gallery {
+    margin-bottom: 50px;
+  }
+  #projects .next-button {
+    margin-bottom: 100px;;
+    margin-left: 60px;
+  }
+}
+
 
 /* Skills*/
 #skills .section {
