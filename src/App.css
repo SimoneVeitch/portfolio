@@ -810,7 +810,7 @@
 #about .profile-text {
   margin-left: 40px;
   margin-right: 40px;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 
@@ -939,6 +939,10 @@
     .toggle-profile-btn {
       margin-left: 40px;
       margin-top: 20px;
+    }
+
+    .face-reveal-gif {
+      bottom: 100px; 
     }
     
     }

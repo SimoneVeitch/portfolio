@@ -23,5 +23,3 @@ Please do not contribute to this project or make any amends to the original file
 ## Media
 
 All animations have been created by mysef using a combination of Adobe Illustrator and https://ezgif.com/maker. 
-
-My application logo has been downloaded from Noun Project and edited by myself in Adobe Illustrator. The original file can be found here: 
